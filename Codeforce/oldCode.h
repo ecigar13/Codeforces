@@ -1,22 +1,36 @@
 #pragma once
 
+#include "oldCode.h"
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
+#include <string>
+#include <istream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <iostream>
+#include <stack>
+#include <map>
+#include <math.h>
+#include <numeric>
+#include <list>
+#include <queue>
+#include <string>
+#include <vector>
+#include <set>
+#include <sstream>
+#include <cstdio>
+#include <cstring>
 
-void countTiles()
-{
-	using namespace std;
-	int length, width, tileEdge;
-	std::cin >> length >> width >> tileEdge;
+using namespace std;
 
-	long long lengthA{ length / tileEdge }, widthA{ width / tileEdge };
-	if (length % tileEdge != 0)
-		lengthA = length / tileEdge + 1;
+void countTiles();
 
-	if (width % tileEdge != 0)
-		widthA = width / tileEdge + 1;
+//convert int to string
+string con(int a);
 
-	cout << widthA * lengthA << endl;
-	ofstream outf("result.txt");
-	outf << widthA * lengthA << endl;
-}
+//convert string to int, in the form of int
+int con2(string a);
+
+void spreadsheet();
