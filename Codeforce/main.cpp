@@ -1,5 +1,5 @@
 
-#include "oldCode.h"
+//#include "oldCode.h"
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -22,10 +22,9 @@
 #include <cstdio>
 #include <cstring>
 
-//Here's the problem: http://codeforces.com/problemset/problem/1/B
+
 
 using namespace std;
-
 
 
 int main() {

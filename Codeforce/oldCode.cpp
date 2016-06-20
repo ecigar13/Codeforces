@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//here's the problem: http://codeforces.com/problemset/problem/1/A
 void countTiles()
 {
 
@@ -41,7 +42,7 @@ string con(int a) {
 }
 
 //convert string to int, in the form of int
-int con2(string a) {
+int con2(string& a) {
 	int r = 0;
 	int po = 1;
 	for (int i = a.size() - 1; i >= 0; i--) {
@@ -52,6 +53,7 @@ int con2(string a) {
 	return r;
 }
 
+//Here's the problem: http://codeforces.com/problemset/problem/1/B
 void spreadsheet()
 {
 	int n = 1;
@@ -62,7 +64,7 @@ void spreadsheet()
 		string temp;
 		cin >> temp;
 		int change = 0;  //number of change
-		int change1(0), change2(0);
+		int change1(0);
 		for (int j = 0; j < temp.size() - 1; j++)
 		{
 			if ((!isdigit(temp[j])) && (isdigit(temp[j + 1])))

@@ -25,12 +25,12 @@
 
 using namespace std;
 
-void countTiles();
 
+void countTiles();
 //convert int to string
 string con(int a);
 
 //convert string to int, in the form of int
-int con2(string a);
+int con2(string& a);
 
 void spreadsheet();
