@@ -27,9 +27,13 @@
 using namespace std;
 
 
+
 int main() {
 
-	spreadsheet();
+	//problem675B();
+	//printf("e\ta\tf\nb\tt\tc\ng\td\th\n\n");
+
+	problem675B_2();
 	//cin.clear();
 	//cin.ignore(sizeof(int), '\n');
 	//cin.get();
