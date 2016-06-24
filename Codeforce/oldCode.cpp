@@ -129,7 +129,7 @@ void problem675B_1()
 	long long n, a, c, b, d, e(0), f, g, h;
 	long long sol{ 1 };
 	cin >> n >> a >> b >> c >> d;
-	for (e;e < n; e++)
+	for (e; e < n; e++)
 	{
 		f = (b - d) + e;
 		g = (a - c) + e;
@@ -158,4 +158,109 @@ void problem675B_2()
 	int low = min(min(a + b, c + d), min(a + c, b + d));
 	int possibleCombination = n - (hi - low);
 	cout << max((long long)0, possibleCombination*n) << endl;
+}
+
+void problem675C()
+{
+	//http://codeforces.com/contest/675/problem/C
+	//This is not my code. Only for reference.
+	typedef long long ll;
+	ll i, j, k, l, m, n;
+	while (cin >> n)
+	{
+		ll sum = 0, ans = n - 1;
+		printf("\nAns: %d", ans);
+		map<ll, ll>arr;
+		for (i = 1; i <= n; i++)
+		{
+			ll input;
+			cin >> input;
+			sum += input;
+			arr[sum]++;
+			ans = min(ans, n - arr[sum]);   //if you can get to a certain sum as many times as possible, then it must be the min times.
+			cout << "\nInput: " << input << "\tSum: " << sum << "\tAns: " << ans << "\tarr[sum]" << arr[sum];
+		}
+		cout << ans << endl;
+	}
+
+}
+
+bool check(long long cookies, long long ingredients, long long powder, vector<long long> & need, vector<long long>&have, long long totalEach)
+{
+	//1 = possible
+	//0 = impossible
+	long long usedIngredient = 0;
+	for (long long i(0); i < ingredients; i++)
+	{
+		usedIngredient += min(have[i], need[i] * cookies);
+	}
+	return (totalEach * cookies - usedIngredient) <= powder ? true : false;
+}
+void problem670D1()
+{
+	//http://codeforces.com/problemset/problem/670/D1
+	//http://codeforces.com/problemset/problem/670/D2  just use the long long instead of int
+
+	//need to know loop condition
+	//need to know condition that a number is possible.
+
+	//acceptance condition?
+	//maxCookies will always go down. minCookies don't change.
+	//first, loop through ingredient, and find available ingredient for the no. of cookies, no exccess.
+	//acceptance condition: if selected number * recipe - available ingredient for the number of cookies (not the total)
+	//< mPowder, ok! min = mid
+	//else max = mid (> mPowder)
+	//keep count of the loop
+	//if count > (max - min) break
+	//choose the min
+
+	//ifstream in("input.txt");
+	//ofstream out("output.txt");
+	long long nIngredients(0), mPowder(0), totalEach(0), totalAvail(0);
+	cin >> nIngredients >> mPowder;
+
+	vector<long long>need(nIngredients);
+	vector<long long>have(nIngredients);
+	for (long long i = 0; i < nIngredients; i++)   //read in recipe
+	{
+		cin >> need[i];
+		totalEach += need[i];
+	}
+
+	for (long long i = 0; i < nIngredients; i++)  //read in available ingredient
+	{
+		cin >> have[i];
+		totalAvail += have[i];
+	}
+
+	long long maxCookies = (totalAvail + mPowder) / totalEach;
+	long long minCookies(maxCookies), midCookies(0);
+
+	for (long long i = 0; i < nIngredients; i++)
+	{
+		minCookies = have[i] / need[i] < minCookies ? have[i] / need[i] : minCookies;
+	}
+	//out << minCookies << " " << maxCookies << " " << midCookies << " " <<totalEach<<" " << endl;
+	long long count = log2((maxCookies - minCookies) + 1) + 1;
+	//out << count;
+	while (count--)
+	{
+		//out << count << endl;
+		midCookies = (minCookies + maxCookies) / 2;
+		bool test = check(midCookies, nIngredients, mPowder, need, have, totalEach);
+
+		if (test)
+			minCookies = midCookies;
+		else
+			maxCookies = midCookies - 1;
+
+	}
+	//out << minCookies << " " << midCookies << " " << maxCookies << endl;
+	bool test = check(maxCookies, nIngredients, mPowder, need, have, totalEach);
+	if (test)
+		cout << maxCookies << endl;
+	else
+		cout << minCookies << endl;
+
+
 }

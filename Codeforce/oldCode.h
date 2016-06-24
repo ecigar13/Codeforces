@@ -35,5 +35,7 @@ int con2(string& a);
 
 void spreadsheet();
 void problem675A();
-//void problem675B_2();
+void problem675B_2();
 void problem675B_1();
+void problem675C();
+void problem670D1();
