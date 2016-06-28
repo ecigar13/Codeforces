@@ -1,7 +1,5 @@
 using namespace std;
-template<typename T>
-
-#define LOOP(A,B,C) for (int i = A; i < B; i += C)
+#define LOOP(A,B,C) for (long long i = A; i < B; i += C)
 
 #define MIN(X, Y)  ((X) < (Y) ? (X) : (Y))
 #define MAX(X, Y)  ((X) > (Y) ? (X) : (Y))
@@ -30,36 +28,57 @@ template<typename T>
 #include <cstring>
 
 
-void problem686B(ifstream &in, ofstream &out)
+
+void problem686B()
 {
 	//http://codeforces.com/contest/686/problem/B
-	long long size(0);
-	in >> size;
+	int size(0);
+	cin >> size;
 	vector<long long> zoo(size);
-	for (int i = 0; i < size; i++)
+	LOOP(0, size, 1)
 	{
-		in >> zoo[i];
+		cin >> zoo[i];
 	}
-	for (int i = 0; i < size; i++)
-	{
-		out << zoo[i];
-	}
-	sort(zoo.begin(), zoo.end());
 
-	for (int i = 0; i < size; i++)
+	while (true)
 	{
-		out << zoo[i];
+		int biggest = -1;
+		LOOP(0, size - 1, 1)
+		{
+			if (zoo[i] > zoo[i + 1])
+				biggest = i;
+		}
+		if (biggest == -1)
+			return;
+
+		LOOP(0, size - 1, 1)
+		{
+			if (zoo[i] > zoo[i + 1])
+			{
+				cout << i+1 << ' ' << i + 2<<'\n';
+				swap(zoo[i], zoo[i + 1]);
+			}
+		}
 	}
+	//for (int i = 0; i < size; i++)
+	//{
+	//	out << zoo[i];
+	//}
+	//sort(zoo.begin(), zoo.end());
+
+	//for (int i = 0; i < size; i++)
+	//{
+	//	out << zoo[i];
+	//}
+
+
 }
 int main()
 {
-	ifstream in("input.txt");
-	ofstream out("output.txt");
+	//ifstream in("input.txt");
+	//ofstream out("output.txt");
 	//problem686B(in, out);
-	int a = 4;
-	int b = 2;
-	SWAP(a, b);
-	cout << a << ' ' << b;
+	problem686B();
 	//cin.clear();
 	//cin.ignore(sizeof(long long), '\n');
 	//cin.get();

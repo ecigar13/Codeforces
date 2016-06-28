@@ -1,5 +1,8 @@
 #pragma once
+#define LOOP(A,B,C) for (long long i = A; i < B; i += C)
 
+#define MIN(X, Y)  ((X) < (Y) ? (X) : (Y))
+#define MAX(X, Y)  ((X) > (Y) ? (X) : (Y))
 #include "oldCode.h"
 
 using namespace std;
@@ -45,7 +48,7 @@ string con(int a) {
 int con2(string& a) {
 	int r = 0;
 	int po = 1;
-	for (int i = a.size() - 1; i >= 0; i--) {
+	for (int i =	static_cast<int> (a.size()) - 1; i >= 0; i--) {
 		int order = a[i] - 'A' + 1;
 		r += order * po;
 		po *= 26;
@@ -262,5 +265,82 @@ void problem670D1()
 	else
 		cout << minCookies << endl;
 
+
+}
+
+void problem4A()
+{
+	//http://codeforces.com/problemset/problem/4/A
+	int weight;
+	cin >> weight;
+	string result;
+	if (weight % 2 || (weight <3))
+		result = "NO";
+	else result = "YES";
+
+	cout << result;
+
+}
+
+void problem678A()
+{
+	//http://codeforces.com/problemset/problem/678/A
+	long long n, k, result;
+	cin >> n >> k;
+	cout << (n / k + 1)*k;
+}
+
+void problem686A()
+{
+	//http://codeforces.com/problemset/problem/686/A
+	long long n, x, stressed(0);
+	cin >> n >> x;
+	//cout << n << ' ' << x;
+	LOOP(0, n, 1)
+	{
+		char sign;
+		long long amt;
+		cin >> sign >> amt;
+		amt = (sign == '-') ? -abs(amt) : abs(amt);
+		//cout << sign << " " << amt;
+		if ((x + amt) < 0)
+			stressed++;
+		else x += amt;
+	}
+	cout << x << ' ' << stressed;
+}
+
+void problem369A()
+{
+	//http://codeforces.com/problemset/problem/369/A
+	//1st type: bowl, 2nd type: dish
+	//input: days, clean bowl, clean dish
+	//1st type: only use bowl. 2nd type: can use both dish and bowl
+
+	int days, bowl, dish;
+	cin >> days >> bowl >> dish;
+	int choice, wash(0);
+	LOOP(0, days, 1)
+	{
+		cin >> choice;
+		if (choice == 1)
+		{
+			if (bowl > 0)
+				bowl--;
+			else wash++;
+		}
+		else if (choice == 2)
+		{
+			if (dish > 0)
+				dish--;
+			else if (bowl > 0)
+				bowl--;
+			else wash++;
+		}
+
+	}
+	cout << wash;
+	//if 1st, if bowl >= 0, bowl--, else wash++
+	//if 2nd, if dish>=0, dish--, else if bowl >=0, bowl--, else wash++
 
 }
