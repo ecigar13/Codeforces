@@ -344,3 +344,219 @@ void problem369A()
 	//if 2nd, if dish>=0, dish--, else if bowl >=0, bowl--, else wash++
 
 }
+
+void problem686B()
+{
+	//http://codeforces.com/contest/686/problem/B
+	int size(0);
+	cin >> size;
+	vector<long long> zoo(size);
+	LOOP(0, size, 1)
+	{
+		cin >> zoo[i];
+	}
+
+	while (true)
+	{
+		int biggest = -1;
+		LOOP(0, size - 1, 1)
+		{
+			if (zoo[i] > zoo[i + 1])
+				biggest = i;
+		}
+		if (biggest == -1)
+			return;
+
+		LOOP(0, size - 1, 1)
+		{
+			if (zoo[i] > zoo[i + 1])
+			{
+				cout << i + 1 << ' ' << i + 2 << '\n';
+				swap(zoo[i], zoo[i + 1]);
+			}
+		}
+	}
+}
+
+void problem703B()
+{
+	//http://codeforces.com/problemset/problem/703/B
+	int cities(1), capCities(0);
+
+	using namespace std;
+	cin >> cities >> capCities;
+	vector<int> cityList(cities);
+	vector<int> capList(capCities);
+
+	for (int i = 0; i < cities; i++)
+	{
+		cin >> cityList[i];
+	}
+	for (int i = 0; i < capCities; i++)
+	{
+		cin >> capList[i];
+	}
+
+	for (int i = 0; i < capCities; i++)
+	{
+		capList[i] -= 1;
+	}
+	int total(0);
+	int capCap(0);
+
+	for (int i(0); i < capCities - 1; i++)
+	{
+		for (int j = i + 1; j < capCities; j++)
+		{
+			int a = (cityList[capList[i]] * cityList[capList[j]]);
+			capCap += a;
+		}
+	}
+
+	total += capCap;
+
+	if (cities == capCities)
+	{
+		cout << total << endl;
+		return;
+	}
+
+	int capCity(0);
+	for (int i(0); i < capCities; i++)
+	{
+		for (int j(0); j < cities; j++)
+		{
+			if (!binary_search(capList.begin(), capList.end(), j))
+			{
+				int a = (cityList[capList[i]] * cityList[j]);
+				capCity += a;
+
+			}
+		}
+	}
+
+	total += capCity;
+
+
+	int cityCity(0);
+	for (int i(0); i < cities; i++)
+	{
+		if (binary_search(capList.begin(), capList.end(), i))
+		{
+			cityList[i] = 0;
+		}
+	}
+	for (int i(1); i < cities; i++)
+	{
+		int a = (cityList[i - 1] * cityList[i]);
+		cityCity += a;
+	}
+
+	total += cityCity;
+	int a = (cityList[0] * cityList[cities - 1]);
+	total += a;
+
+	cout << total << endl;
+}
+void problem709B()
+{
+	//http://codeforces.com/contest/709/problem/B
+	using namespace std;
+	long long pt(0), start(0);
+	cin >> pt >> start;
+
+	if (pt <2)
+	{
+		cout << 0 << endl; return;
+	}
+	vector<long long> points(pt);
+	for (long long i(0); i < pt; i++)
+	{
+		cin >> points[i];
+	}
+	sort(points.begin(), points.end());
+	long long dist1(0), dist2(0);
+	if (pt == 2)
+	{
+		dist1 = abs(start - points[0]);
+		dist2 = abs(start - points[1]);
+		//cout << dist1 << ' ' << dist2 << endl;
+	}
+	else //(pt > 2)
+	{
+		dist1 = min(abs(start - points[0]), abs(start - points[pt - 2])) + abs(points[pt - 2] - points[0]);
+		dist2 = min(abs(start - points[pt - 1]), abs(start - points[1])) + abs(points[pt - 1] - points[1]);
+		//cout << dist1 << ' ' << dist2 << endl;;
+	}
+
+	if (dist1 > dist2)
+	{
+		cout << dist2 << endl;
+		return;
+	}
+	cout << dist1 << endl;
+}
+void problem707A()
+{
+	//http://codeforces.com/problemset/problem/707/A
+	int row(0), col(0);
+	cin >> row >> col;
+	bool color(false);		//true= color
+	for (int i{ 0 }; i < row; i++)
+		for (int j{ 0 }; j < col; j++)
+		{
+			char c;
+			cin >> c;
+			if (c != 'W' && c != 'B' && c != 'G')
+				color = true;
+		}
+
+	if (color)
+		cout << "#Color";
+	else
+		cout << "#Black&White";
+
+}
+void euler1()
+{
+	int a(3), b(5), c(15), max(0), total(0);
+	max = 1000 / a;
+	total += 3 * (max*(max + 1) / 2);
+	max = 1000 / b;
+	total += 5 * (max*(max + 1) / 2);
+	max = 1000 / c;
+	total -= 15 * (max*(max + 1) / 2);
+	cout << total;
+}
+void euler2()
+{
+	long long first(1), second(2), total(0);
+	while (first<4000000) {
+		if (first % 2 == 0)
+			total += first;
+
+		long long temp = second;
+		second += first;
+		first = temp;
+	};
+	cout << "Total is:" << total << '\n';
+	cout << "First: " << first << '\n' << "Second: " << second << '\n';
+
+}
+void euler3()
+{
+	long long num = 600851475143, max(0), div(0);
+	max = (int)floor(sqrt(num));
+
+	long long i(1);
+	while (i <= max)
+	{
+		if (num%i == 0)
+		{
+			num /= i;
+			div = i;
+		}
+		i++;
+	}
+	cout << div;
+}

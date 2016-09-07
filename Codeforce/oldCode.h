@@ -25,7 +25,7 @@
 
 using namespace std;
 
-
+/*
 void countTiles();
 //convert int to string
 string con(int a);
@@ -39,3 +39,4 @@ void problem675B_2();
 void problem675B_1();
 void problem675C();
 void problem670D1();
+*/

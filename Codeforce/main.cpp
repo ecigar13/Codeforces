@@ -1,8 +1,5 @@
 using namespace std;
-#define LOOP(A,B,C) for (long long i = A; i < B; i += C)
 
-#define MIN(X, Y)  ((X) < (Y) ? (X) : (Y))
-#define MAX(X, Y)  ((X) > (Y) ? (X) : (Y))
 
 //#include "oldCode.h"
 #include <iostream>
@@ -26,61 +23,49 @@ using namespace std;
 #include <sstream>
 #include <cstdio>
 #include <cstring>
+#include <random>
 
-
-
-void problem686B()
+void problem707B()
 {
-	//http://codeforces.com/contest/686/problem/B
-	int size(0);
-	cin >> size;
-	vector<long long> zoo(size);
-	LOOP(0, size, 1)
+	struct Route
 	{
-		cin >> zoo[i];
+		int cityA;
+		int cityB;
+		int dist;
+	};
+	long long cities, road, storage(0);
+	vector<Route> routeList;
+	cin >> cities >> road >> storage;
+	Route a = { 0,0,0 };
+	for (long long i = 0; i < road; i++)
+	{
+		cin >> a.cityA >> a.cityB >> a.dist;
+		routeList.push_back(a);
 	}
-
-	while (true)
+	vector<long long> sto;
+	if (storage > 0)
 	{
-		int biggest = -1;
-		LOOP(0, size - 1, 1)
+		for (long long i = 0; i < storage; i++)
 		{
-			if (zoo[i] > zoo[i + 1])
-				biggest = i;
-		}
-		if (biggest == -1)
-			return;
-
-		LOOP(0, size - 1, 1)
-		{
-			if (zoo[i] > zoo[i + 1])
-			{
-				cout << i+1 << ' ' << i + 2<<'\n';
-				swap(zoo[i], zoo[i + 1]);
-			}
+			cin >> sto[i];
 		}
 	}
-	//for (int i = 0; i < size; i++)
-	//{
-	//	out << zoo[i];
-	//}
-	//sort(zoo.begin(), zoo.end());
-
-	//for (int i = 0; i < size; i++)
-	//{
-	//	out << zoo[i];
-	//}
+	long long min((int)numeric_limits<int>::max);
+	for (long long i = 0; i < road; i++)
+	{
+		if (find(sto.begin(), sto.end(), routeList[i].cityA) || find(sto.begin(), sto.end(), routeList[i].cityB))
+		{
+			long long j = routeList[i].dist;
+			min = min(j, min);
+		}
+	}
 
 
 }
 int main()
 {
-	//ifstream in("input.txt");
-	//ofstream out("output.txt");
-	//problem686B(in, out);
-	problem686B();
-	//cin.clear();
-	//cin.ignore(sizeof(long long), '\n');
-	//cin.get();
+	problem707B();
+	cin.clear();
+	cin.ignore(sizeof(long long), '\n');
+	cin.get();
 }
-
