@@ -187,7 +187,6 @@ void problem675C()
 	}
 
 }
-
 bool check(long long cookies, long long ingredients, long long powder, vector<long long> & need, vector<long long>&have, long long totalEach)
 {
 	//1 = possible
@@ -267,7 +266,6 @@ void problem670D1()
 
 
 }
-
 void problem4A()
 {
 	//http://codeforces.com/problemset/problem/4/A
@@ -281,7 +279,6 @@ void problem4A()
 	cout << result;
 
 }
-
 void problem678A()
 {
 	//http://codeforces.com/problemset/problem/678/A
@@ -289,7 +286,6 @@ void problem678A()
 	cin >> n >> k;
 	cout << (n / k + 1)*k;
 }
-
 void problem686A()
 {
 	//http://codeforces.com/problemset/problem/686/A
@@ -377,7 +373,6 @@ void problem686B()
 		}
 	}
 }
-
 void problem703B()
 {
 	//http://codeforces.com/problemset/problem/703/B
@@ -559,4 +554,91 @@ void euler3()
 		i++;
 	}
 	cout << div;
+}
+void problem707B()
+{
+	struct Route
+	{
+		int cityA;
+		int cityB;
+		int dist;
+	};
+	long long cities(0), road(0), storage(0);
+	vector<Route> routeList;
+	vector<long long> sto;
+
+	cin >> cities >> road >> storage;
+	Route a = { 0,0,0 };
+
+	for (long long i = 0; i < road; i++)
+	{
+		cin >> a.cityA >> a.cityB >> a.dist;
+		routeList.push_back(a);
+	}
+	//cout << "NO!" << endl;
+	if (storage > 0)
+	{
+		long long temp(0);
+		for (long long i = 0; i < storage; i++)
+		{
+			cin >> temp;
+			sto.push_back(temp);
+		}
+	}
+	else {
+		cout << -1; return;
+	}
+
+	//cout << "YES!" << endl;
+	long long small = LLONG_MAX;
+	for (long long i = 0; i < road; i++)
+	{
+		vector<long long>::iterator it1 = find(sto.begin(), sto.end(), routeList[i].cityA);
+		vector<long long>::iterator it2 = find(sto.begin(), sto.end(), routeList[i].cityB);
+		if (it1 != sto.end() ^ it2 != sto.end())
+		{
+			long long j = routeList[i].dist;
+			small = min(j, small);
+		}
+	}
+	if (small == LLONG_MAX)
+		cout << -1;
+	else cout << small;
+
+}
+void problem707B1()
+{
+	int a, b, c;
+	cin >> a >> b >> c;
+
+	if (c == 0)
+	{
+		cout << -1;
+		return;
+	}
+	int d, mi(INT_MAX);
+	vector<int> cityA(b);
+	vector<int>cityB(b);
+	vector<int>dist(b);
+	vector<int>storage(a + 1, 0);
+
+	for (int i = 0; i < b; i++)
+	{
+		cin >> cityA[i] >> cityB[i] >> dist[i];
+	}
+	for (int i = 0; i < c; i++)
+	{
+		cin >> d;
+		storage[d] = 1;
+	}
+	for (int i = 0; i < b; i++)
+	{
+		if (storage[cityA[i]] != storage[cityB[i]])
+		{
+			mi = min(mi, dist[i]);
+		}
+	}
+	if (mi == INT_MAX)
+		cout << -1 << endl;
+	else cout << mi;
 }
