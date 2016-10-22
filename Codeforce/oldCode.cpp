@@ -1,9 +1,6 @@
-#pragma once
-#define LOOP(A,B,C) for (long long i = A; i < B; i += C)
 
-#define MIN(X, Y)  ((X) < (Y) ? (X) : (Y))
-#define MAX(X, Y)  ((X) > (Y) ? (X) : (Y))
 #include "oldCode.h"
+
 
 using namespace std;
 
@@ -96,6 +93,7 @@ void spreadsheet()
 			int row = stoi(temp.substr(change1 + 1));
 			cout << 'R' << row << 'C' << con2(col) << '\n';
 		}
+
 	}
 }
 
