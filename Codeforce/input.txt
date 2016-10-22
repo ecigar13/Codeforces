@@ -1,5 +1,0 @@
-5
-1 2 1 2 1
-faction = "chruul",
-               current_health = [0-9]{1,4},
-               xp = [0-9]{1,5},

@@ -1,6 +1,26 @@
 
-#include "oldCode.h"
-
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+#include <string>
+#include <istream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <iostream>
+#include <stack>
+#include <map>
+#include <math.h>
+#include <numeric>
+#include <list>
+#include <queue>
+#include <string>
+#include <vector>
+#include <set>
+#include <sstream>
+#include <cstdio>
+#include <cstring>
 
 using namespace std;
 
@@ -45,7 +65,7 @@ string con(int a) {
 int con2(string& a) {
 	int r = 0;
 	int po = 1;
-	for (int i =	static_cast<int> (a.size()) - 1; i >= 0; i--) {
+	for (int i = static_cast<int> (a.size()) - 1; i >= 0; i--) {
 		int order = a[i] - 'A' + 1;
 		r += order * po;
 		po *= 26;
@@ -290,7 +310,7 @@ void problem686A()
 	long long n, x, stressed(0);
 	cin >> n >> x;
 	//cout << n << ' ' << x;
-	LOOP(0, n, 1)
+	for (int i = 0; i< n; i++)
 	{
 		char sign;
 		long long amt;
@@ -314,7 +334,7 @@ void problem369A()
 	int days, bowl, dish;
 	cin >> days >> bowl >> dish;
 	int choice, wash(0);
-	LOOP(0, days, 1)
+	for (int i = 0; i< days; i++)
 	{
 		cin >> choice;
 		if (choice == 1)
@@ -345,7 +365,7 @@ void problem686B()
 	int size(0);
 	cin >> size;
 	vector<long long> zoo(size);
-	LOOP(0, size, 1)
+	for (int i = 0; i<size; i++)
 	{
 		cin >> zoo[i];
 	}
@@ -353,7 +373,8 @@ void problem686B()
 	while (true)
 	{
 		int biggest = -1;
-		LOOP(0, size - 1, 1)
+
+		for (int i = 0; i<size - 1; i++)
 		{
 			if (zoo[i] > zoo[i + 1])
 				biggest = i;
@@ -361,7 +382,7 @@ void problem686B()
 		if (biggest == -1)
 			return;
 
-		LOOP(0, size - 1, 1)
+		for (int i = 0; i<size - 1; i++)
 		{
 			if (zoo[i] > zoo[i + 1])
 			{
