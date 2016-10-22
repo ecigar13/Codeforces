@@ -1,7 +1,5 @@
-// Codeforce.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
+#include "oldCode.h"
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -24,25 +22,23 @@
 #include <cstdio>
 #include <cstring>
 #include <random>
+#include<iterator>
 
 using namespace std;
 
-void problem707B1()
+void euler5()
 {
+	int count2(0), count3(0), count5(0), count7(0), count11(0), count13(0), count17(0), count19(0);
+	for (int i(0); i <= 20; i++)
+	{
 
+	}
 }
 
 int main()
 {
-	string end, init;
-	cout << "Introduction" << endl;
-	cout << "Start time (xx:yy)" << endl;
-	cin >> init;
-
-
-	string hours0 = init.substr(0, 2);
-	int hours = stoi(hours0);
-	cout << hours << endl;
+	euler5();
+	cout << endl;
 	system("pause");
 	return 0;
 

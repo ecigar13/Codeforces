@@ -1,26 +1,5 @@
 
 #include "stdafx.h"
-#include <iostream>
-#include <fstream>
-#include <stdio.h>
-#include <string>
-#include <istream>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <iostream>
-#include <stack>
-#include <map>
-#include <math.h>
-#include <numeric>
-#include <list>
-#include <queue>
-#include <string>
-#include <vector>
-#include <set>
-#include <sstream>
-#include <cstdio>
-#include <cstring>
 
 using namespace std;
 
@@ -574,6 +553,51 @@ void euler3()
 	}
 	cout << div;
 }
+
+void euler4()
+{
+	int max = (int)pow(999, 2);
+	cout << max << endl;
+	vector<int> v;
+
+	int temp = max;
+	int size(0);
+	while (temp)
+	{
+		auto it = v.begin();
+		v.insert(it, temp % 10);
+		temp /= 10;
+
+		size++;
+	}
+
+
+
+	int mid(0);
+	if (v.size() % 2)
+	{
+		mid = v.size() / 2;
+	}
+	else  mid = v.size() / 2 + 1;
+
+	int offset(0);
+	for (int i(0); i < mid; i++)
+	{
+		v[i] = v[size - 1 - offset];
+		offset++;
+	}
+
+	for (int i = 0; i< size; i++)
+	{
+		cout << v[i];
+	}
+	//find size of max
+	//create vector of that size
+	//put number into max
+	//find mid point
+	//convert to palindrome
+}
+
 void problem707B()
 {
 	struct Route
