@@ -21,7 +21,6 @@ void countTiles()
 	ofstream outf("result.txt");
 	outf << widthA * lengthA << endl;
 }
-
 //convert int to string
 string con(int a) {
 	string r = "";
@@ -39,7 +38,6 @@ string con(int a) {
 	}
 	return r;
 }
-
 //convert string to int, in the form of int
 int con2(string& a) {
 	int r = 0;
@@ -51,8 +49,6 @@ int con2(string& a) {
 	}
 	return r;
 }
-
-
 void spreadsheet()
 {
 	//Here's the problem: http://codeforces.com/problemset/problem/1/B
@@ -95,7 +91,6 @@ void spreadsheet()
 
 	}
 }
-
 void problem675A()
 {
 	//http ://codeforces.com/problemset/problem/675/A
@@ -120,7 +115,6 @@ void problem675A()
 		else cout << "NO";
 	}
 }
-
 void problem675B_1()
 {
 	//http://codeforces.com/contest/675/problem/B
@@ -140,7 +134,6 @@ void problem675B_1()
 
 	cout << sol*n << endl;
 }
-
 void problem675B_2()
 {
 	//http://codeforces.com/contest/675/problem/B
@@ -159,7 +152,6 @@ void problem675B_2()
 	int possibleCombination = n - (hi - low);
 	cout << max((long long)0, possibleCombination*n) << endl;
 }
-
 void problem675C()
 {
 	//http://codeforces.com/contest/675/problem/C
@@ -302,7 +294,6 @@ void problem686A()
 	}
 	cout << x << ' ' << stressed;
 }
-
 void problem369A()
 {
 	//http://codeforces.com/problemset/problem/369/A
@@ -337,7 +328,6 @@ void problem369A()
 	//if 2nd, if dish>=0, dish--, else if bowl >=0, bowl--, else wash++
 
 }
-
 void problem686B()
 {
 	//http://codeforces.com/contest/686/problem/B
@@ -553,7 +543,6 @@ void euler3()
 	}
 	cout << div;
 }
-
 void euler4()
 {
 	int max = (int)pow(999, 2);
@@ -596,6 +585,96 @@ void euler4()
 	//put number into max
 	//find mid point
 	//convert to palindrome
+}
+void euler5()
+{
+	vector<int> div = { 2, 3, 5, 7, 11, 13, 17, 19 };
+	vector<int> v(20);
+	v[2] = v[3] = v[5] = v[7] = v[11] = v[13] = v[17] = v[19] = 1;
+
+	for (int j(0); j < div.size(); j++)
+	{
+
+		for (int i(3); i <= 20; i++)
+		{
+			int count(0);
+			int temp = i;
+			while ((temp%div[j] == 0) && (temp / div[j] >= 1))
+			{
+
+				count++;
+				temp /= div[j];
+
+			}
+
+			if (count > v[div[j]])
+				v[div[j]] = count;
+			//find power of all GCD
+			//go through 2,20, exclude 1
+			//find frequency of all prime factors
+			//while mode is !=0, find a/b, then add up frequency.
+		}
+	}
+
+
+	int result(1);
+	for (int i(0); i < v.size(); i++)
+	{
+		cout << i << ' ' << v[i] << endl;
+		if (v[i])
+		{
+			int temp = (int)pow(i, v[i]);
+
+			cout << temp << endl;
+			result *= temp;
+		}
+	}
+
+	cout << result;
+}
+void euler6()
+{
+	long long i = 10;
+	long long j = i*(i + 1)*(2 * i + 1) / 6;
+	long long k = j*j;
+	cout << k - j;
+}
+void euler7()
+{
+	//Sieve of Eratosthenes
+	//prime number theorem
+	int i = 2;
+	int limit = 0;
+	while (limit < 10001)
+	{
+		limit = i / log(i);
+		i++;
+	}
+
+	vector<int> primes;
+	for (int j(0); j <= i; j++)
+	{
+		primes.push_back(j);
+	}
+	cout << i << endl;
+	int count = 0;
+	int j(2);
+	for (j; j <= i; j++)
+	{
+		if (primes[j])
+		{
+			count++;
+			if (count == 10001)
+				break;
+			for (int k(2); k*primes[j] <= i; k++)
+			{
+				primes[k*primes[j]] = 0;
+			}
+			primes[j] = 0;
+		}
+	}
+
+	cout << j << endl;
 }
 
 void problem707B()
