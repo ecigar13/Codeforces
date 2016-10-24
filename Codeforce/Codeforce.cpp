@@ -5,13 +5,39 @@
 
 using namespace std;
 
+void euler8()
+{
+	//open file
+	/*read file
+		
+	1 string, size 13. 
+	fgets initial string, size 13.
+	int curMax = 0;
 
+	for(int i(13); i<(1000-13);i++
+		
+		int product(0);
+		for(int i=0, i<13,i++)
+		{
+			
+			product*=i (i is each character in string, use atoi, stoi)
+		}
+		curMax = product>curMax?product:curMax;
+
+		remove first number in string
+		getchar and append to the end of string
+
+		rof.
+
+	cout<<string<<endl;
+	*/
+}
 
 
 int main()
 {
 	clock_t t = clock();
-	euler7();
+	euler8();
 
 
 	t = clock() -t;
