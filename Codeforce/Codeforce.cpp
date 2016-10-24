@@ -8,6 +8,14 @@ using namespace std;
 void euler8()
 {
 	//open file
+
+	string myStr(13,0);
+	char temp;
+
+	for (int i(0); i < 13; i++)
+	{
+		//read the first 13 chars into the string.
+	}
 	/*read file
 		
 	1 string, size 13. 
